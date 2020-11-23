@@ -10,8 +10,8 @@ jobs:
   test:
     runs-on: ubuntu-latest
     env:
-      AWS_REGION: 'us-east-2'
-      AWS_ACCOUNT: ${{ secrets.CDK_ACCOUNT }}
+      CDK_REGION: 'us-east-2'
+      CDK_ACCOUNT: ${{ secrets.CDK_ACCOUNT }}
 
     steps:
       - name: Checkout
