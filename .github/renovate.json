@@ -1,9 +1,12 @@
 {
   "extends": ["config:base"],
   "masterIssue": true,
-  "automerge": true,
   "schedule": ["every wednesday"],
   "packageRules": [
+    {
+      "matchUpdateTypes": ["major", "minor", "patch", "pin", "digest"],
+      "automerge": true
+    },
     {
       "packagePatterns": [".*aws-cdk"],
       "groupName": "cdk deps"
