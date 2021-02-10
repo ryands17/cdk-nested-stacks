@@ -4,12 +4,22 @@
   "schedule": ["every wednesday"],
   "packageRules": [
     {
-      "matchUpdateTypes": ["major", "minor", "patch", "pin", "digest"],
+      "matchUpdateTypes": [
+        "major",
+        "minor",
+        "patch",
+        "pin",
+        "digest",
+        "lockFileMaintenance",
+        "rollback",
+        "bump"
+      ],
       "automerge": true
     },
     {
       "packagePatterns": [".*aws-cdk"],
-      "groupName": "cdk deps"
+      "groupName": "cdk deps",
+      "automerge": true
     }
   ]
 }
