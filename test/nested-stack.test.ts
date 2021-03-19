@@ -2,10 +2,10 @@ import * as cdk from '@aws-cdk/core'
 import { expect as expectCDK, haveResourceLike } from '@aws-cdk/assert'
 import { MainApp } from '../lib/nested-stacks'
 
-test('Should create the VPC and subnets in the main stack', () => {
-  const stack = createStack()
+test('Should create the VPC and subnets as the base resources', () => {
+  const { baseResources } = createStack()
 
-  expectCDK(stack).to(
+  expectCDK(baseResources).to(
     haveResourceLike('AWS::EC2::VPC', {
       CidrBlock: '10.0.0.0/20',
       EnableDnsHostnames: true,
@@ -14,14 +14,14 @@ test('Should create the VPC and subnets in the main stack', () => {
       Tags: [
         {
           Key: 'Name',
-          Value: 'NestedStacks/app-vpc',
+          Value: 'NestedStacks/base-resources/app-vpc',
         },
       ],
     })
   )
 
   for (let range of [0, 4, 8, 12]) {
-    expectCDK(stack).to(
+    expectCDK(baseResources).to(
       haveResourceLike('AWS::EC2::Subnet', {
         CidrBlock: `10.0.${range}.0/22`,
         VpcId: {},
@@ -30,11 +30,26 @@ test('Should create the VPC and subnets in the main stack', () => {
   }
 })
 
-test('Should create a Cloudformation Nested Stack', () => {
-  const stack = createStack()
-  expectCDK(stack).to(
-    haveResourceLike('AWS::CloudFormation::Stack', {
-      TemplateURL: {},
+test('Should create an EC2 instance and IAM Instance Profile as the application resource', () => {
+  const { appResources } = createStack()
+
+  expectCDK(appResources).to(haveResourceLike('AWS::IAM::InstanceProfile'))
+  expectCDK(appResources).to(
+    haveResourceLike('AWS::EC2::Instance', {
+      AvailabilityZone: {},
+      IamInstanceProfile: {},
+      InstanceType: 't2.micro',
+      SecurityGroupIds: [],
+      Tags: [
+        {
+          Key: 'Name',
+          Value: 'simple-server',
+        },
+      ],
+      UserData: {
+        'Fn::Base64':
+          '#!/bin/bash\nyum install -y httpd\nsystemctl start httpd\nsystemctl enable httpd\necho "<h1>Hello World from $(hostname -f)</h1>" > /var/www/html/index.html',
+      },
     })
   )
 })
