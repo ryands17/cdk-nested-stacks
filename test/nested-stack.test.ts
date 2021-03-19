@@ -40,9 +40,8 @@ test('Should create a Cloudformation Nested Stack', () => {
 })
 
 function createStack() {
-  const stackName = 'NestedStacks'
   const app = new cdk.App()
-  return new MainApp(app, stackName, {
-    env: { region: process.env.CDK_REGION, account: process.env.CDK_ACCOUNT },
+  return new MainApp(app, 'NestedStacks', {
+    env: { region: process.env.CDK_REGION || 'us-east-2' },
   })
 }

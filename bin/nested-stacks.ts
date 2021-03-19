@@ -6,7 +6,6 @@ import { MainApp } from '../lib/nested-stacks'
 const app = new cdk.App()
 new MainApp(app, 'NestedStacks', {
   env: {
-    region: app.node.tryGetContext('region'),
-    account: app.node.tryGetContext('accountID'),
+    region: app.node.tryGetContext('region') || 'us-east-2',
   },
 })

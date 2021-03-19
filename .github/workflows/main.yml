@@ -9,10 +9,6 @@ on:
 jobs:
   test:
     runs-on: ubuntu-latest
-    env:
-      CDK_REGION: 'us-east-2'
-      CDK_ACCOUNT: ${{ secrets.CDK_ACCOUNT }}
-
     steps:
       - name: Checkout
         uses: actions/checkout@v2
