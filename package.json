@@ -13,10 +13,10 @@
     "postinstall": "husky install"
   },
   "devDependencies": {
-    "@aws-cdk/assert": "1.97.0",
+    "@aws-cdk/assert": "1.102.0",
     "@types/jest": "26.0.22",
     "@types/node": "14.14.37",
-    "aws-cdk": "1.97.0",
+    "aws-cdk": "1.102.0",
     "husky": "6.0.0",
     "jest": "26.6.3",
     "lint-staged": "10.5.4",
@@ -26,9 +26,9 @@
     "typescript": "4.2.4"
   },
   "dependencies": {
-    "@aws-cdk/aws-ec2": "1.97.0",
-    "@aws-cdk/aws-iam": "1.97.0",
-    "@aws-cdk/core": "1.97.0",
+    "@aws-cdk/aws-ec2": "1.102.0",
+    "@aws-cdk/aws-iam": "1.102.0",
+    "@aws-cdk/core": "1.102.0",
     "source-map-support": "0.5.19"
   },
   "prettier": {
