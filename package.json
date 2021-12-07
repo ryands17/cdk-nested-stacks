@@ -29,7 +29,7 @@
     "@aws-cdk/aws-ec2": "1.131.0",
     "@aws-cdk/aws-iam": "1.131.0",
     "@aws-cdk/core": "1.131.0",
-    "source-map-support": "0.5.20"
+    "source-map-support": "0.5.21"
   },
   "prettier": {
     "semi": false,
